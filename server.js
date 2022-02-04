@@ -7,10 +7,10 @@ const register =require('./controllers/register');
 const signin =require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image =require('./controllers/image');
-
+ 
 const db = knex({
     client: 'pg',
-    connection: {
+     connection: {
         host: '127.0.0.1',
         user: 'amirahmedimtiaz',
         database: 'smart-brain'
@@ -33,6 +33,7 @@ app.post('/signin',(req,res) =>{signin.handleSignin(req,res,db,bcrypt)});
 app.post('/register',(req,res)=>{register.handleRegister(req,res,db,bcrypt)});
 app.put('/image', (req,res) => {image.handleImage(req,res,db)});
 app.get('/profile/:id',(req,res)=>{profile.handleProfileGet(req,res,db)});
+app.post('/imageurl', (req,res) => {image.handleAPICall(req,res)});
 
 app.listen(3001,() =>{
     console.log('app is running on port 3001');
